@@ -1,0 +1,30 @@
+import os
+import git
+from radon.complexity import cc_visit from radon.complexity import SCORE from radon.cli import Config
+from radon.cli.harvest import CCHarvester
+def clone_repo(repo_url, clone_dir='repo'):
+if os.path.exists(clone_dir):
+print(f"Directory'fclone_diry' already exists. Skipping clone.")else:
+print(f"Cloning repository frepo_url} into fclone_dir....")
+git.Repo.clone_from( repo_url, clone_dir)
+return clone_dir
+def analyze_code_complexity( repo_path):
+config = Config(
+exclude='
+ignore='venv'，
+order=SCORE,
+no_assert=True, 
+show_closures=True 
+min='A' 
+max='F"
+harvester = CCHarvester([repo_path], config)
+results = harvester.take()
+for filepath, complexity in results.items():
+print(f"\nFile:(filepath")for item in complexity:
+print(f" - fitem.name」 (complexity: fitem.complexity))")
+def main():
+repo url = input("Enter the GitHub repository URL：")clone_dir = 'repo'
+repo_path = clone_repo( repo_url, clone_dir)
+analyze_code_complexity(repo_path)
+if name ==! main I:
+main()
